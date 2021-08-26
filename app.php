@@ -7,6 +7,40 @@ $age = 25; // yaş (sene)
 
 $guess = "1470"; // Tahmin edilen değer
 
+function BMR_Calculation($gender,$weight,$height,$age,$guess){
+    // Cinsiyet belirleme ve hesaplanması.
+    if($gender=="male"){
+        $BMR_Value = 88.362+(13.397*$weight)+(4.799*$height)-(5.677*$age);  // ERKEK ICIN BMR DEGERI
+    }elseif($gender=="female"){
+        $BMR_Value = 447.593+(9.247*$weight)+(3.098*$height)-(4.330*$age);  // KADIN ICIN BMR DEGERI
+    }
+    // Hesaplanan BMR değerinin tahmini değer ile karşılaştırılması.
+    if($BMR_Value>$guess){  
+        // Gercek deger tahmini değerden büyük ise
+        return '
+        BMR: '.$BMR_Value.'
+        Tahmin değerinden büyük
+        ';
+    }elseif($BMR_Value<$guess){
+         // Gercek deger tahmini değerden küçük ise
+        return '
+        BMR: '.$BMR_Value.'
+        Tahmin değerinden düşük
+        ';
+    }else{
+        // Gercek deger tahmini değer ile eşit ise
+        return '
+        BMR: '.$BMR_Value.'
+        Tahmin değerine eşit
+        ';
+    }
+}
+// BMR hesaplanması ve karşılaştırılması için gereken değerlerin fonksiyona iletilmesi.
+$BMR_Result = BMR_Calculation($gender,$weight,$height,$age,$guess);
+
+// Hesaplanan ve karşılaştırılan BMR değerinin ekrana yazdırılması
+echo $BMR_Result; 
+
 /**
  * Bu ödevde bazal metabolizma hesaplaması yapacağız.
  * Yukarıdaki değişkenleri ve aşağıdaki formülü kullanarak
